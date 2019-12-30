@@ -3,6 +3,9 @@ package com.example.miwokapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -11,16 +14,32 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        String [] numbers = new String[10];
-        numbers[0] = "one";
-        numbers[1] = "two";
-        numbers[2] = "three";
-        numbers[3] = "four";
-        numbers[4] = "five";
-        numbers[5] = "six";
-        numbers[6] = "seven";
-        numbers[7] = "eight";
-        numbers[8] = "nine";
-        numbers[9] = "ten";
+        ArrayList<String> words = new ArrayList<>();
+        words.add("one");
+        words.add("two");
+        words.add("three");
+        words.add("four");
+        words.add("five");
+        words.add("six");
+        words.add("seven");
+        words.add("eight");
+        words.add("nine");
+        words.add("ten");
+        words.add("eleven");
+        words.add("twelve");
+        words.add("thirteen");
+
+        Log.v("NumbersActicity.java", "This is Number " + words.get(0));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(1));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(2));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(3));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(4));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(5));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(6));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(7));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(8));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(9));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(10));
+        Log.v("NumbersActicity.java", "This is Number " + words.get(11));
     }
 }
