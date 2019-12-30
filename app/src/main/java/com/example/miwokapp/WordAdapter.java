@@ -10,12 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    public WordAdapter(@NonNull Context context, int resource, @NonNull List<Word> objects) {
-        super(context, resource, objects);
+
+    public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> words) {
+        super(context, 0, words);
     }
 
     @NonNull
@@ -25,7 +27,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word currentWord = getItem(position);
         View listViewItem = convertView;
         if (listViewItem == null){
-            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_items, parent);
+            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
         TextView defaultWord = listViewItem.findViewById(R.id.english_word_text_view);

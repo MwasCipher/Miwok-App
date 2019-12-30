@@ -29,11 +29,11 @@ public class NumbersActivity extends AppCompatActivity {
 
 
 
-        ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
+        WordAdapter adapter = new WordAdapter(this, 0, words);
 
         ListView listView = findViewById(R.id.list);
 
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(adapter);
 
     }
 }
