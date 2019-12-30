@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,17 +33,12 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("twelve");
         words.add("thirteen");
 
-        Log.v("NumbersActicity.java", "This is Number " + words.get(0));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(1));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(2));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(3));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(4));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(5));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(6));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(7));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(8));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(9));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(10));
-        Log.v("NumbersActicity.java", "This is Number " + words.get(11));
+
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+
+        ListView listView = findViewById(R.id.list);
+
+        listView.setAdapter(itemsAdapter);
+
     }
 }
