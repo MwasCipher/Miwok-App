@@ -34,9 +34,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+        //Setting Background Color For Each Category
+
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         View wordContainer = listViewItem.findViewById(R.id.word_container);
         wordContainer.setBackgroundColor(color);
+
+        //Setting Default, Miwok and  Respective Pictures to Individual Views
 
         TextView defaultWord = listViewItem.findViewById(R.id.english_word_text_view);
         TextView miwokWord = listViewItem.findViewById(R.id.miwok_word_text_view);
@@ -44,6 +48,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         defaultWord.setText(currentWord.getEnglishWord());
         miwokWord.setText(currentWord.getMiwokWord());
+
+        //Check That The Current Word Object Has An image and Make Invisible Image View Where Image Absent
 
         if (currentWord.hasImage()){
             imageView.setImageResource(currentWord.getImageResourceId());
