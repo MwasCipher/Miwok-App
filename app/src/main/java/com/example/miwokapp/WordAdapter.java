@@ -10,14 +10,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    private int mColorResourceId;
 
-    public WordAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Word> words) {
+
+    public WordAdapter(@NonNull Context context, int colorResourceId, @NonNull ArrayList<Word> words) {
         super(context, 0, words);
+        mColorResourceId = colorResourceId;
     }
 
     @NonNull
@@ -29,6 +33,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         if (listViewItem == null){
             listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
+
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        View wordContainer = listViewItem.findViewById(R.id.word_container);
+        wordContainer.setBackgroundColor(color);
 
         TextView defaultWord = listViewItem.findViewById(R.id.english_word_text_view);
         TextView miwokWord = listViewItem.findViewById(R.id.miwok_word_text_view);
