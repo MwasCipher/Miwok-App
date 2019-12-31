@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ColorsActivity"
             android:label="@string/colors_name"></activity>
-        <activity android:name=".FamiliesActivity"
+        <activity android:name=".FamilyActivity"
             android:label="@string/family_name"/>
         <activity android:name=".PhrasesActivity"
             android:label="@string/phrases_name"/>
