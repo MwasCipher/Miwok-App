@@ -4,6 +4,7 @@ public class Word {
 
     private String englishWord, miwokWord;
     private int imageResourceId = NO_IMAGE_PROVIDED;
+    private int audioResourceId;
 
     public static final int NO_IMAGE_PROVIDED = -1;
 
@@ -11,15 +12,17 @@ public class Word {
 
     }
 
-    public Word(String englishWord, String miwokWord, int imageResourceId) {
+    public Word(String englishWord, String miwokWord, int imageResourceId, int audioResourceId) {
         this.englishWord = englishWord;
         this.miwokWord = miwokWord;
         this.imageResourceId = imageResourceId;
+        this.audioResourceId = audioResourceId;
     }
 
-    public Word(String englishWord, String miwokWord) {
+    public Word(String englishWord, String miwokWord, int audioResourceId) {
         this.englishWord = englishWord;
         this.miwokWord = miwokWord;
+        this.audioResourceId = audioResourceId;
     }
 
     public String getEnglishWord() {
@@ -36,5 +39,9 @@ public class Word {
 
     public boolean hasImage(){
         return imageResourceId != NO_IMAGE_PROVIDED;
+    }
+
+    public int getAudioResourceId() {
+        return audioResourceId;
     }
 }
