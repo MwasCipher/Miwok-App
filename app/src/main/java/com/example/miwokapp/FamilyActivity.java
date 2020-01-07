@@ -52,7 +52,25 @@ public class FamilyActivity extends AppCompatActivity {
                 mediaPlayer = MediaPlayer.create(FamilyActivity.this, word.getAudioResourceId());
                 mediaPlayer.start();
 
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        releaseMediaPlayer();
+                    }
+                });
             }
+
         });
+
+
+
+    }
+
+    private void releaseMediaPlayer(){
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
     }
 }
