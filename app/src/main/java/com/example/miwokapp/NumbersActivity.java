@@ -3,7 +3,10 @@ package com.example.miwokapp;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.RemoteControlClient;
+import android.media.RemoteController;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,13 +23,17 @@ public class NumbersActivity extends AppCompatActivity {
     AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT
+                    || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+
                 mediaPlayer.pause();
                 mediaPlayer.seekTo(0);
 
             }else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                mediaPlayer.start();
 
             }else if (focusChange == AudioManager.AUDIOFOCUS_LOSS ){
+                releaseMediaPlayer();
 
             }
         }
@@ -63,20 +70,28 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word = words.get(position);
-
-                int result = audioManager.requestAudioFocus()
-
-
                 releaseMediaPlayer();
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), word.getAudioResourceId());
-                mediaPlayer.start();
 
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        releaseMediaPlayer();
-                    }
-                });
+                int result = audioManager.requestAudioFocus(audioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC,
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    audioManager.registerMediaButtonEventReceiver(RemoteControlClient);
+
+
+
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), word.getAudioResourceId());
+                    mediaPlayer.start();
+
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            releaseMediaPlayer();
+                        }
+                    });
+
+                }
 
             }
         });
@@ -88,6 +103,8 @@ public class NumbersActivity extends AppCompatActivity {
             mediaPlayer.release();
             mediaPlayer = null;
         }
+
+        audioManager.abandonAudioFocus(audioFocusChangeListener);
 
     }
 
