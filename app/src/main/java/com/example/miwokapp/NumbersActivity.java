@@ -37,7 +37,7 @@ public class NumbersActivity extends AppCompatActivity {
 
             }
         }
-    }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +102,11 @@ public class NumbersActivity extends AppCompatActivity {
         if (mediaPlayer != null){
             mediaPlayer.release();
             mediaPlayer = null;
+
+            audioManager.abandonAudioFocus(audioFocusChangeListener);
         }
 
-        audioManager.abandonAudioFocus(audioFocusChangeListener);
+
 
     }
 
