@@ -50,7 +50,28 @@ public class ColorsActivity extends AppCompatActivity {
                 mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
                 mediaPlayer.start();
 
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        releaseMediaPlayer();
+                    }
+                });
+
             }
         });
+    }
+
+    private void releaseMediaPlayer(){
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        releaseMediaPlayer();
     }
 }
