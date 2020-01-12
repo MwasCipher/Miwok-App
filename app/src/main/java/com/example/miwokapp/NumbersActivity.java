@@ -3,10 +3,7 @@ package com.example.miwokapp;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.RemoteControlClient;
-import android.media.RemoteController;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -77,7 +74,7 @@ public class NumbersActivity extends AppCompatActivity {
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    audioManager.registerMediaButtonEventReceiver(RemoteControlClient);
+//                    audioManager.registerMediaButtonEventReceiver(RemoteControlClient);
 
 
 
