@@ -58,7 +58,7 @@ public class FamilyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_family, container, false);
+        View rootView = inflater.inflate(R.layout.word_list, container, false);
 
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();

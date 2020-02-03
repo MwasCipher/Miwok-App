@@ -27,10 +27,10 @@ import java.util.ArrayList;
 public class ColorsFragment extends Fragment {
 
     /** Handles playback of all the sound files */
-    private MediaPlayer mMediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     /** Handles audio focus when playing a sound file */
-    private AudioManager mAudioManager;
+    private AudioManager audioManager;
 
     /**
      * This listener gets triggered whenever the audio focus changes
@@ -48,11 +48,11 @@ public class ColorsFragment extends Fragment {
 
                 // Pause playback and reset player to the start of the file. That way, we can
                 // play the word from the beginning when we resume playback.
-                mMediaPlayer.pause();
-                mMediaPlayer.seekTo(0);
+                mediaPlayer.pause();
+                mediaPlayer.seekTo(0);
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                 // The AUDIOFOCUS_GAIN case means we have regained focus and can resume playback.
-                mMediaPlayer.start();
+                mediaPlayer.start();
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 // The AUDIOFOCUS_LOSS case means we've lost audio focus and
                 // Stop playback and clean up resources
@@ -63,7 +63,6 @@ public class ColorsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    MediaPlayer mediaPlayer;
 
     public ColorsFragment() {
         // Required empty public constructor
@@ -107,6 +106,8 @@ public class ColorsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         View rootview = inflater.inflate(R.layout.word_list, container, false);
         // Inflate the layout for this fragment
